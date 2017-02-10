@@ -51,7 +51,8 @@ public class LoginController extends BaseController {
 		mav.setViewName("forward:/login.jsp");
 		if (dbUser == null) {
 			mav.addObject("errorMsg", "用户名不存在");
-		} else if (!dbUser.getPassword().equals(user.getPassword())) {
+//		} else if (!dbUser.getPassword().equals(user.getPassword())) {
+		} else if (true) {
 			mav.addObject("errorMsg", "用户密码不正确");
 		} else if (dbUser.getLocked() == User.USER_LOCK) {
 			mav.addObject("errorMsg", "用户已经被锁定，不能登录。");

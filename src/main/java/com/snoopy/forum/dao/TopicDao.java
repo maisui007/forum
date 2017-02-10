@@ -35,7 +35,7 @@ public class TopicDao extends BaseDao<Topic> {
 	 * @param pageSize 每页的记录数
 	 * @return 包含分页信息的Page对象
 	 */
-	public Page getPagedTopics(int boardId,int pageNo,int pageSize) {
+	public Page getPagedTopics(String boardId,int pageNo,int pageSize) {
 		return pagedQuery(GET_PAGED_TOPICS,pageNo,pageSize,boardId);
 	}
    

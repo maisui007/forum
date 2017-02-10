@@ -152,7 +152,7 @@ public class ForumService {
 	 * @param boardId
 	 * @return
 	 */
-    public Page getPagedTopics(int boardId,int pageNo,int pageSize){
+    public Page getPagedTopics(String boardId,int pageNo,int pageSize){
 		return topicDao.getPagedTopics(boardId,pageNo,pageSize);
     }
     
@@ -182,7 +182,7 @@ public class ForumService {
 	 * 
 	 * @param boardId
 	 */
-	public Board getBoardById(int boardId) {
+	public Board getBoardById(String boardId) {
 		return boardDao.get(boardId);
 	}
 

@@ -111,7 +111,7 @@ public class ForumManageController extends BaseController {
 					+ ")不存在");
 			view.setViewName("/fail");
 		} else {
-			Board board = forumService.getBoardById(Integer.parseInt(boardId));
+			Board board = forumService.getBoardById(boardId);
 			user.getManBoards().add(board);
 			userService.update(user);
 			view.setViewName("/success");

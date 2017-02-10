@@ -30,7 +30,7 @@ public class Post extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "post_id")
-	private int postId;
+	private String postId;
 
 	@Column(name = "post_title")
 	private String postTitle;
@@ -39,7 +39,7 @@ public class Post extends BaseDomain {
 	private String postText;
 
 	@Column(name = "board_id")
-	private int boardId;
+	private String boardId;
 
 	@Column(name = "create_time")
 	private Date createTime;
@@ -60,20 +60,20 @@ public class Post extends BaseDomain {
 		this.createTime = createTime;
 	}
 
-	public int getBoardId() {
-		return boardId;
-	}
-
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
-	}
-
-	public int getPostId() {
+	public String getPostId() {
 		return postId;
 	}
 
-	public void setPostId(int postId) {
+	public void setPostId(String postId) {
 		this.postId = postId;
+	}
+
+	public String getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(String boardId) {
+		this.boardId = boardId;
 	}
 
 	public String getPostText() {
