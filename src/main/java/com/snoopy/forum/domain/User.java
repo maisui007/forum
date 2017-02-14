@@ -41,8 +41,9 @@ public class User extends BaseDomain {
     public static final int NORMAL_USER = 1;
     
     @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-    private String userId;
+    private int userId;
 
     @Column(name = "user_name")
 	private String userName;
@@ -55,9 +56,8 @@ public class User extends BaseDomain {
 	
 	@Column(name = "last_visit")
 	private Date lastVisit;
-
-	@Column(name = "user_no")
-	private String userNo;
+    
+	private String password;
 
 	private int locked ;
 
@@ -93,19 +93,19 @@ public class User extends BaseDomain {
         this.manBoards = manBoards;
     }
 
-	public String getUserNo() {
-		return userNo;
+    public String getPassword() {
+		return password;
 	}
 
-	public void setUserNo(String userNo) {
-		this.userNo = userNo;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

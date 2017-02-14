@@ -7,16 +7,16 @@ import static org.mockito.Mockito.*;
 import com.snoopy.forum.dao.UserDao;
 import com.snoopy.forum.domain.User;
 import com.snoopy.forum.exception.UserExistException;
-import com.snoopy.forum.utils.UUIDGenerator;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.test.util.ReflectionTestUtils;
 
+
 /**
  * 测试用户管理器服务类的方法
- *
+ * 
  */
 public class UserServiceTest extends BaseServiceTest {
 	private UserDao userDao;
@@ -28,31 +28,29 @@ public class UserServiceTest extends BaseServiceTest {
 	    userService = new UserService();
 		ReflectionTestUtils.setField(userService, "userDao", userDao);
 	}
-
+	
 	@Test
 	public void register() throws UserExistException {
 		User user = new User();
 		user.setUserName("tom");
-//		user.setPassword("1234");
-		user.setUserId(UUIDGenerator.generator32());
-
+		user.setPassword("1234");
+		
 		doAnswer(new Answer<User>() {
 			public User answer(InvocationOnMock invocation) {
 				Object[] args = invocation.getArguments();
 				User user = (User) args[0];
 				if (user != null) {
-					user.setUserId(UUIDGenerator.generator32());
+					user.setUserId(1);
 				}
 				return user;
 			}
 		}).when(userDao).save(user);
-
+			
 		userService.register(user);
-		assertNotNull(user.getUserId());
-//		assertThat(user.getUserId(), equalTo(1));
+		assertThat(user.getUserId(), equalTo(1));
 		verify(userDao, times(1)).save(user);
 	}
-
+	
 
 	/**
 	 * 测试根据用户名模糊查询用户列表的方式
@@ -61,11 +59,11 @@ public class UserServiceTest extends BaseServiceTest {
 	public void getUserByUserName() {
 		User user = new User();
 		user.setUserName("tom");
-//		user.setPassword("1234");
+		user.setPassword("1234");
 		user.setCredit(100);
 		doReturn(user).when(userDao).getUserByUserName("tom");
-
-
+		
+		
 		User u = userService.getUserByUserName("tom");
 		assertNotNull(u);
 		assertThat(u.getUserName(), equalTo(user.getUserName()));
@@ -79,7 +77,7 @@ public class UserServiceTest extends BaseServiceTest {
 	public void lockUser() {
 		User user = new User();
 		user.setUserName("tom");
-//		user.setPassword("1234");
+		user.setPassword("1234");
 		doReturn(user).when(userDao).getUserByUserName("tom");
 		doNothing().when(userDao).update(user);
 
@@ -88,13 +86,13 @@ public class UserServiceTest extends BaseServiceTest {
 
 		assertEquals(User.USER_LOCK, u.getLocked());
 	}
-
+    
 	@Test
 	public void unlockUser() {
 
 		User user = new User();
 		user.setUserName("tom");
-//		user.setPassword("1234");
+		user.setPassword("1234");
 		user.setLocked(User.USER_LOCK);
 		doReturn(user).when(userDao).getUserByUserName("tom");
 		doNothing().when(userDao).update(user);

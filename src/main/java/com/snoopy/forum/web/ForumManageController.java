@@ -103,7 +103,7 @@ public class ForumManageController extends BaseController {
      */
 	@RequestMapping(value = "/forum/setBoardManager", method = RequestMethod.POST)
 	public ModelAndView setBoardManager(@RequestParam("userName") String userName
-			,@RequestParam("boardId") String boardId) {
+			,@RequestParam("boardId") int boardId) {
 		ModelAndView view =new ModelAndView();
 		User user = userService.getUserByUserName(userName);
 		if (user == null) {

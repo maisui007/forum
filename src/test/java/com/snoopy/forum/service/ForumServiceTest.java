@@ -32,7 +32,7 @@ public class ForumServiceTest extends BaseServiceTest {
 
 	@SpringBean("userService")
 	private UserService userService;
-
+	
 	@Before
 	public void init(){
 		SessionFactory sf  = hibernateTemplate.getSessionFactory();
@@ -54,7 +54,7 @@ public class ForumServiceTest extends BaseServiceTest {
 	@DataSet("BaobaoTao.DataSet.xls")
 	public void addBoard() throws Exception {
 		Board board = XlsDataSetBeanFactory.createBean(ForumServiceTest.class,
-                "BaobaoTao.DataSet.xls", "t_board", Board.class);
+				"BaobaoTao.DataSet.xls", "t_board", Board.class);
 
 		forumService.addBoard(board);
 		Board boardDb = forumService.getBoardById(board.getBoardId());
@@ -75,11 +75,11 @@ public class ForumServiceTest extends BaseServiceTest {
 
 		forumService.addTopic(topic);
 
-		Board boardDb = forumService.getBoardById("1");
+		Board boardDb = forumService.getBoardById(1);
 		User userDb = userService.getUserByUserName("tom");
 		assertThat(boardDb.getTopicNum(), is(1));
 		assertThat(userDb.getCredit(), is(110));
-//		assertThat(topic.getTopicId(), greaterThan(0));
+		assertThat(topic.getTopicId(), greaterThan(0));
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class ForumServiceTest extends BaseServiceTest {
 
 	/**
 	 * 测试添加回复帖子
-	 *
+	 * 
 	 */
 	@Test
 	@DataSet("BaobaoTao.DataSet.xls")
@@ -106,19 +106,19 @@ public class ForumServiceTest extends BaseServiceTest {
 		User user = XlsDataSetBeanFactory.createBean(ForumServiceTest.class,
 				"BaobaoTao.DataSet.xls", "t_user", User.class);
 		Topic topic = new Topic();
-		topic.setTopicId("1");
+		topic.setTopicId(1);
 		post.setUser(user);
 		post.setTopic(topic);
 		forumService.addPost(post);
-
+		
 		User userDb = userService.getUserByUserName("tom");
 		Topic topicDb = forumService.getTopicByTopicId(1);
-
-//		assertThat(post.getPostId(), greaterThan(1));
+		
+		assertThat(post.getPostId(), greaterThan(1));
 		assertThat(userDb.getCredit(), equalTo(105));
 		assertThat(topicDb.getReplies(), equalTo(2));
 	}
-
+	
     /**
      * 测试删除回复帖子的方法
      */
@@ -127,11 +127,11 @@ public class ForumServiceTest extends BaseServiceTest {
     public void removePost()
     {
 		forumService.removePost(1);
-
+		
 		Post postDb = forumService.getPostByPostId(1);
 		User userDb = userService.getUserByUserName("tom");
 		Topic topicDb = forumService.getTopicByTopicId(1);
-
+		
 		assertNull(postDb);
 	    assertThat(userDb.getCredit(), equalTo(80));
 	    assertThat(topicDb.getReplies(), equalTo(0));
@@ -150,9 +150,9 @@ public class ForumServiceTest extends BaseServiceTest {
 	    assertThat(userDb.getCredit(), equalTo(200));
 	    assertThat(topicDb.getDigest(), equalTo(Topic.DIGEST_TOPIC));
     }
-
-
-
+	
+	
+	
 	@Test
 	@DataSet("BaobaoTao.DataSet.xls")
 	public void addBoardManager(){

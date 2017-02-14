@@ -25,13 +25,13 @@ public class LoginControllerTest extends BaseWebTest {
 		// 向控制发起请求 ” /loginCheck.html”
 		ModelAndView mav = handlerAdapter.handle(request, response, controller);
 		User user = (User) request.getSession().getAttribute(CommonConstant.USER_CONTEXT);
-
+	
 		assertNotNull(mav);
 		assertEquals(mav.getViewName(), "/success");
 		assertNotNull(user);
 		assertThat(user.getUserName(), equalTo("tom"));// ⑧ 验证返回结果
 		assertThat(user.getCredit(), greaterThan(5));
 	}
-
+	
 
 }

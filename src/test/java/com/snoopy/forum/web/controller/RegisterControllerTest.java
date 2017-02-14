@@ -16,13 +16,13 @@ public class RegisterControllerTest extends BaseWebTest {
 	public void register() throws Exception {
 		request.setRequestURI("/register.html");
 		request.setMethod("POST");
-		request.addParameter("userName", "test");
-		request.addParameter("password", "1234");
+		request.addParameter("userName", "test"); 
+		request.addParameter("password", "1234"); 
 
-		// 向控制发起请求
+		// 向控制发起请求 
 		ModelAndView mav = handlerAdapter.handle(request, response, controller);
 		assertNotNull(mav);
 	}
-
+	
 
 }

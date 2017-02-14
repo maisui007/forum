@@ -32,7 +32,7 @@ public class Topic extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "topic_id")
-	private String topicId;
+	private int topicId;
 
 	@Column(name = "topic_title")
 	private String topicTitle;
@@ -42,7 +42,7 @@ public class Topic extends BaseDomain {
 	private User user;
 
 	@Column(name = "board_id")
-	private String boardId;
+	private int boardId;
 
 	@Transient
 	private MainPost mainPost = new MainPost();
@@ -77,7 +77,13 @@ public class Topic extends BaseDomain {
 		this.digest = digest;
 	}
 
+	public int getBoardId() {
+		return boardId;
+	}
 
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
+	}
 
 	public Date getLastPost() {
 		return lastPost;
@@ -95,20 +101,12 @@ public class Topic extends BaseDomain {
 		this.replies = replies;
 	}
 
-	public String getTopicId() {
+	public int getTopicId() {
 		return topicId;
 	}
 
-	public void setTopicId(String topicId) {
+	public void setTopicId(int topicId) {
 		this.topicId = topicId;
-	}
-
-	public String getBoardId() {
-		return boardId;
-	}
-
-	public void setBoardId(String boardId) {
-		this.boardId = boardId;
 	}
 
 	public String getTopicTitle() {

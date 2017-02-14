@@ -1,11 +1,22 @@
 package com.snoopy.forum.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -15,7 +26,7 @@ public class Board extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "board_id")
-	private String boardId;
+	private int boardId;
 
 	@Column(name = "board_name")
 	private String boardName;
@@ -25,8 +36,8 @@ public class Board extends BaseDomain {
 
 	@Column(name = "topic_num")
 	private int topicNum ;
-
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "manBoards", fetch = FetchType.LAZY)
+	
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "manBoards", fetch = FetchType.LAZY)
 	private Set<User> users = new HashSet<User>();
 
 	public int getTopicNum() {
@@ -45,11 +56,11 @@ public class Board extends BaseDomain {
 		this.boardDesc = boardDesc;
 	}
 
-	public String getBoardId() {
+	public int getBoardId() {
 		return boardId;
 	}
 
-	public void setBoardId(String boardId) {
+	public void setBoardId(int boardId) {
 		this.boardId = boardId;
 	}
 
@@ -69,6 +80,6 @@ public class Board extends BaseDomain {
 		this.users = users;
 	}
 
-
+    
 
 }

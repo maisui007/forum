@@ -21,7 +21,7 @@ public class LoginLog extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "login_log_id")
-	private String loginLogId;
+	private int loginLogId;
 	
 	@Column(name = "login_datetime")
 	private Date loginDate;
@@ -31,16 +31,15 @@ public class LoginLog extends BaseDomain {
     private User user;
 	
 	private String ip;
-
-
-	public String getLoginLogId() {
+	
+	
+	public int getLoginLogId() {
 		return loginLogId;
 	}
-
-	public void setLoginLogId(String loginLogId) {
+	public void setLoginLogId(int loginLogId) {
 		this.loginLogId = loginLogId;
 	}
-
+	
 	public String getIp() {
 		return ip;
 	}

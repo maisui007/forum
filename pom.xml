@@ -71,6 +71,8 @@
       <groupId>org.springframework</groupId>
       <artifactId>org.springframework.web.servlet</artifactId>
       <version>${spring.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.springframework.web.servlet-3.0.5.RELEASE.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -204,11 +206,13 @@
       <artifactId>commons-beanutils-core</artifactId>
       <version>1.8.3</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
     <dependency>
-      <groupId>poi</groupId>
+      <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
-      <version>3.0-FINAL</version>
+      <version>3.2-FINAL</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.unitils/unitils-core -->
     <dependency>
       <groupId>org.unitils</groupId>
