@@ -7,7 +7,6 @@
 			<generator class="identity" />
 		</id>
 		<property name="userName" column="user_name" />
-		<property name="userNo" column="user_no"/>
 		<property name="locked"/>
 		<property name="credit"/>
     	<property name="lastIp" column="last_ip"/>
